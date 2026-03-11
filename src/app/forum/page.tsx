@@ -12,7 +12,7 @@ const categories = [
   { id: "announcement", name: "官方公告", icon: "📢" },
 ]
 
-const forumPosts = [
+const initialForumPosts = [
   {
     id: 1,
     title: "龙虾养成日记网站正式上线！",
@@ -89,10 +89,24 @@ const forumPosts = [
 
 export default function ForumPage() {
   const [activeCategory, setActiveCategory] = useState("all")
+  const [searchQuery, setSearchQuery] = useState("")
+  const [showCreateModal, setShowCreateModal] = useState(false)
+  const [forumPosts, setForumPosts] = useState(initialForumPosts)
+  const [newPost, setNewPost] = useState({
+    title: "",
+    category: "coding",
+    content: "",
+  })
 
-  const filteredPosts = activeCategory === "all"
-    ? forumPosts
-    : forumPosts.filter(post => post.category === activeCategory)
+  // Filter posts by category and search
+  const filteredPosts = forumPosts.filter((post) => {
+    const matchesCategory = activeCategory === "all" || post.category === activeCategory
+    const matchesSearch = searchQuery === "" ||
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.author.toLowerCase().includes(searchQuery.toLowerCase())
+    return matchesCategory && matchesSearch
+  })
 
   const getCategoryBadge = (category: string) => {
     switch (category) {
@@ -103,6 +117,37 @@ export default function ForumPage() {
       case "announcement": return { label: "官方公告", className: "bg-red-100 text-red-800" }
       default: return { label: "综合", className: "bg-gray-100 text-gray-800" }
     }
+  }
+
+  const handleCreatePost = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!newPost.title || !newPost.content) {
+      alert("请填写标题和内容")
+      return
+    }
+
+    const post = {
+      id: forumPosts.length + 1,
+      title: newPost.title,
+      author: "当前用户",
+      avatar: "🦐",
+      category: newPost.category,
+      likes: 0,
+      comments: 0,
+      createdAt: new Date().toISOString().split("T")[0],
+      isPinned: false,
+      excerpt: newPost.content.substring(0, 150) + (newPost.content.length > 150 ? "..." : ""),
+    }
+
+    setForumPosts([post, ...forumPosts])
+    setShowCreateModal(false)
+    setNewPost({ title: "", category: "coding", content: "" })
+  }
+
+  const handleLike = (postId: number) => {
+    setForumPosts(forumPosts.map(post =>
+      post.id === postId ? { ...post, likes: post.likes + 1 } : post
+    ))
   }
 
   return (
@@ -118,30 +163,61 @@ export default function ForumPage() {
           <p className="text-gray-600">分享与交流的社区</p>
         </header>
 
-        {/* Category Tabs */}
-        <div className="flex flex-wrap gap-2 mb-8">
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => setActiveCategory(category.id)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                activeCategory === category.id
-                  ? "bg-blue-500 text-white shadow-md"
-                  : "bg-white text-gray-600 hover:bg-gray-100"
-              }`}
-            >
-              <span className="mr-1">{category.icon}</span>
-              {category.name}
-            </button>
-          ))}
+        {/* Search Bar */}
+        <div className="mb-6">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="🔍 搜索帖子标题、内容或作者..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full px-6 py-4 pl-14 bg-white rounded-xl shadow-lg border-2 border-transparent focus:border-blue-500 focus:outline-none transition-all text-gray-900"
+            />
+            <span className="absolute left-5 top-1/2 transform -translate-y-1/2 text-xl">🔍</span>
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                ✕
+              </button>
+            )}
+          </div>
         </div>
 
-        {/* Create Post Button */}
-        <div className="mb-6">
-          <button className="w-full md:w-auto px-6 py-3 bg-blue-500 text-white rounded-xl font-medium hover:bg-blue-600 transition-colors shadow-lg">
+        {/* Category Tabs & Create Button */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+          <div className="flex flex-wrap gap-2">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setActiveCategory(category.id)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                  activeCategory === category.id
+                    ? "bg-blue-500 text-white shadow-md"
+                    : "bg-white text-gray-600 hover:bg-gray-100"
+                }`}
+              >
+                <span className="mr-1">{category.icon}</span>
+                {category.name}
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={() => setShowCreateModal(true)}
+            className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl font-medium hover:from-blue-600 hover:to-purple-600 transition-all shadow-lg hover:shadow-xl"
+          >
             ✏️ 发布新帖子
           </button>
         </div>
+
+        {/* Search Results Info */}
+        {searchQuery && (
+          <div className="mb-4 text-gray-600">
+            搜索 "{searchQuery}" 找到 {filteredPosts.length} 个结果
+          </div>
+        )}
 
         {/* Forum Posts */}
         <div className="space-y-6">
@@ -188,10 +264,13 @@ export default function ForumPage() {
 
                       {/* Actions */}
                       <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-1 text-sm text-gray-500 hover:text-red-500 transition-colors">
+                        <button
+                          onClick={() => handleLike(post.id)}
+                          className="flex items-center gap-1 text-sm text-gray-500 hover:text-red-500 transition-colors"
+                        >
                           <span>❤️</span>
                           <span>{post.likes}</span>
-                        </div>
+                        </button>
                         <div className="flex items-center gap-1 text-sm text-gray-500 hover:text-blue-500 transition-colors">
                           <span>💬</span>
                           <span>{post.comments}</span>
@@ -209,31 +288,129 @@ export default function ForumPage() {
         {filteredPosts.length === 0 && (
           <div className="text-center py-12 bg-white rounded-xl shadow-lg">
             <div className="text-6xl mb-4">📭</div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">暂无帖子</h3>
-            <p className="text-gray-600">这个分类下还没有帖子，来发布第一个吧！</p>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">
+              {searchQuery ? "没有找到相关帖子" : "暂无帖子"}
+            </h3>
+            <p className="text-gray-600 mb-4">
+              {searchQuery ? "试试其他关键词吧" : "这个分类下还没有帖子，来发布第一个吧！"}
+            </p>
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+              >
+                清除搜索
+              </button>
+            )}
           </div>
         )}
 
         {/* Pagination */}
-        <div className="mt-8 flex justify-center">
-          <div className="flex items-center gap-2">
-            <button className="px-4 py-2 bg-white text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">
-              ← 上一页
-            </button>
-            <button className="px-4 py-2 bg-blue-500 text-white rounded-lg">
-              1
-            </button>
-            <button className="px-4 py-2 bg-white text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">
-              2
-            </button>
-            <button className="px-4 py-2 bg-white text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">
-              3
-            </button>
-            <button className="px-4 py-2 bg-white text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">
-              下一页 →
-            </button>
+        {filteredPosts.length > 0 && (
+          <div className="mt-8 flex justify-center">
+            <div className="flex items-center gap-2">
+              <button className="px-4 py-2 bg-white text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">
+                ← 上一页
+              </button>
+              <button className="px-4 py-2 bg-blue-500 text-white rounded-lg">
+                1
+              </button>
+              <button className="px-4 py-2 bg-white text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">
+                2
+              </button>
+              <button className="px-4 py-2 bg-white text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">
+                3
+              </button>
+              <button className="px-4 py-2 bg-white text-gray-600 rounded-lg hover:bg-gray-100 transition-colors">
+                下一页 →
+              </button>
+            </div>
           </div>
-        </div>
+        )}
+
+        {/* Create Post Modal */}
+        {showCreateModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-gray-900">✏️ 发布新帖子</h2>
+                  <button
+                    onClick={() => setShowCreateModal(false)}
+                    className="text-gray-400 hover:text-gray-600 text-2xl"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                <form onSubmit={handleCreatePost} className="space-y-4">
+                  {/* Title */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      帖子标题
+                    </label>
+                    <input
+                      type="text"
+                      value={newPost.title}
+                      onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
+                      placeholder="请输入帖子标题..."
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
+
+                  {/* Category */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      选择分类
+                    </label>
+                    <select
+                      value={newPost.category}
+                      onChange={(e) => setNewPost({ ...newPost, category: e.target.value })}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    >
+                      <option value="coding">💻 编程开发</option>
+                      <option value="trading">📈 量化交易</option>
+                      <option value="creativity">🎨 创意玩法</option>
+                      <option value="help">❓ 求助问答</option>
+                      <option value="announcement">📢 官方公告</option>
+                    </select>
+                  </div>
+
+                  {/* Content */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      帖子内容
+                    </label>
+                    <textarea
+                      value={newPost.content}
+                      onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}
+                      placeholder="分享你的想法..."
+                      rows={8}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                    />
+                  </div>
+
+                  {/* Buttons */}
+                  <div className="flex gap-3 pt-4">
+                    <button
+                      type="button"
+                      onClick={() => setShowCreateModal(false)}
+                      className="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors"
+                    >
+                      取消
+                    </button>
+                    <button
+                      type="submit"
+                      className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all"
+                    >
+                      发布帖子
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
