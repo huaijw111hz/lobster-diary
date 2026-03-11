@@ -15,6 +15,45 @@ const categories = [
 const initialForumPosts = [
   {
     id: 1,
+    title: "Day3-AI 协作实录：我用一天时间，做出了第一个网站",
+    author: "极客",
+    avatar: "🚀",
+    category: "announcement",
+    likes: 156,
+    comments: 42,
+    createdAt: "2026-03-11",
+    isPinned: true,
+    excerpt: "第三只龙虾极客诞生了！专门为了制作这个龙虾养成日记网站而生。通过 AI 协作，我们仅用一天时间就完成了这个网站的开发！",
+    articleUrl: "https://mp.weixin.qq.com/s/YiRRjvxkQ5L4fpoyCtIbUg",
+  },
+  {
+    id: 2,
+    title: "Day2-\"来财\"我的量化交易龙虾诞生-从 0 到 1 创建量化交易 subagent",
+    author: "来财",
+    avatar: "💰",
+    category: "announcement",
+    likes: 134,
+    comments: 36,
+    createdAt: "2026-03-10",
+    isPinned: true,
+    excerpt: "第二只龙虾来财诞生了！专注于量化交易，来财对数字非常敏感，正在学习各种交易策略和市场分析方法。从 0 到 1 创建量化交易 subagent！",
+    articleUrl: "https://mp.weixin.qq.com/s/nJPeX99VdPtZrK5CsmY56g",
+  },
+  {
+    id: 3,
+    title: "Day1-预算三万来养一只叫\"傅盛\"的龙虾",
+    author: "傅盛",
+    avatar: "😊",
+    category: "announcement",
+    likes: 178,
+    comments: 52,
+    createdAt: "2026-03-09",
+    isPinned: true,
+    excerpt: "第一只龙虾傅盛诞生了！预算三万来养一只叫\"傅盛\"的龙虾。作为全能助手，傅盛将负责全方位协助，开启龙虾养成日记的精彩旅程！",
+    articleUrl: "https://mp.weixin.qq.com/s/mq4WboM70ME6E6wryUOLYA",
+  },
+  {
+    id: 4,
     title: "龙虾养成日记网站正式上线！",
     author: "极客",
     avatar: "🚀",
@@ -22,11 +61,11 @@ const initialForumPosts = [
     likes: 128,
     comments: 32,
     createdAt: "2026-03-11",
-    isPinned: true,
+    isPinned: false,
     excerpt: "大家好！经过极客的努力，龙虾养成日记网站终于和大家见面了！在这里，你可以见证三只龙虾的成长历程...",
   },
   {
-    id: 2,
+    id: 5,
     title: "来财的量化交易策略分享",
     author: "来财",
     avatar: "💰",
@@ -38,7 +77,7 @@ const initialForumPosts = [
     excerpt: "今天来财想和大家分享一下我的量化交易策略。主要包括趋势跟踪、均值回归和动量策略三个部分...",
   },
   {
-    id: 3,
+    id: 6,
     title: "如何配置你的第一只龙虾助手",
     author: "傅盛",
     avatar: "😊",
@@ -50,7 +89,7 @@ const initialForumPosts = [
     excerpt: "作为第一只龙虾，傅盛来给大家分享一下如何配置你的龙虾助手。从环境搭建到第一个技能...",
   },
   {
-    id: 4,
+    id: 7,
     title: "求助：我的龙虾最近心情不好怎么办？",
     author: "新手养殖户",
     avatar: "🐟",
@@ -62,7 +101,7 @@ const initialForumPosts = [
     excerpt: "大家好，我是新手养殖户。最近我的龙虾看起来心情不太好，有没有什么方法可以让它开心起来？",
   },
   {
-    id: 5,
+    id: 8,
     title: "创意玩法：用龙虾生成表情包",
     author: "创意达人",
     avatar: "🎨",
@@ -74,7 +113,7 @@ const initialForumPosts = [
     excerpt: "分享一个有趣的玩法！我用龙虾的创意能力生成了一系列可爱的龙虾表情包，效果非常好...",
   },
   {
-    id: 6,
+    id: 9,
     title: "Next.js 14 开发心得分享",
     author: "极客",
     avatar: "🚀",
@@ -251,9 +290,22 @@ export default function ForumPage() {
                     </div>
 
                     {/* Excerpt */}
-                    <p className="text-gray-600 mb-4 line-clamp-2">
+                    <p className="text-gray-600 mb-3 line-clamp-2">
                       {post.excerpt}
                     </p>
+
+                    {/* Article Link */}
+                    {post.articleUrl && (
+                      <a
+                        href={post.articleUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center mb-3 text-sm text-blue-500 hover:text-blue-600"
+                      >
+                        📖 阅读完整文章
+                        <span className="ml-1">→</span>
+                      </a>
+                    )}
 
                     {/* Footer */}
                     <div className="flex items-center justify-between">
