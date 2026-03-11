@@ -1,0 +1,123 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model (for authentication and profile)
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relationships
+  diaryEntries  DiaryEntry[]
+  posts         Post[]
+  comments      Comment[]
+  likes         Like[]
+
+  @@map("users")
+}
+
+// Session model for NextAuth
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: CASCADE)
+
+  @@map("sessions")
+}
+
+// VerificationToken model for NextAuth
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@id([identifier, token])
+  @@map("verification_tokens")
+}
+
+// DiaryEntry model for lobster养成日记
+model DiaryEntry {
+  id          String    @id @default(cuid())
+  userId      String
+  title       String
+  content     String
+  date        DateTime  @default(now())
+  mood        String?   // e.g., "happy", "tired", "excited"
+  milestones  String?   // e.g., "Learned to code", "Got first recommendation"
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relationships
+  user        User      @relation(fields: [userId], references: [id], onDelete: CASCADE)
+
+  @@map("diary_entries")
+}
+
+// Post model for community forum
+model Post {
+  id          String    @id @default(cuid())
+  userId      String
+  title       String
+  content     String
+  category    String?   // e.g., "tips", "showcase", "questions"
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relationships
+  user        User      @relation(fields: [userId], references: [id], onDelete: CASCADE)
+  comments    Comment[]
+  likes       Like[]
+
+  @@map("posts")
+}
+
+// Comment model for forum posts
+model Comment {
+  id          String    @id @default(cuid())
+  userId      String
+  postId      String
+  content     String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relationships
+  user        User      @relation(fields: [userId], references: [id], onDelete: CASCADE)
+  post        Post      @relation(fields: [postId], references: [id], onDelete: CASCADE)
+
+  @@map("comments")
+}
+
+// Like model for posts and comments
+model Like {
+  id          String    @id @default(cuid())
+  userId      String
+  postId      String?
+  commentId   String?
+  createdAt   DateTime  @default(now())
+
+  // Relationships
+  user        User      @relation(fields: [userId], references: [id], onDelete: CASCADE)
+  post        Post?     @relation(fields: [postId], references: [id], onDelete: CASCADE)
+  comment     Comment?  @relation(fields: [commentId], references: [id], onDelete: CASCADE)
+
+  // Unique constraint for user liking post/comment only once
+  @@unique([userId, postId])
+  @@unique([userId, commentId])
+
+  @@map("likes")
+}
