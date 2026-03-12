@@ -105,21 +105,23 @@ export default function SkillsPage() {
             <div className="bg-white rounded-xl p-6 shadow-lg">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {[
-                  "coding-agent - AI 编程助手",
-                  "web-search - 网页搜索工具",
-                  "image-generate - 图片生成",
-                  "video-generate - 视频生成",
-                  "data-analysis - 数据分析",
-                  "language-translate - 多语言翻译",
-                  "code-review - 代码审查",
-                  "document-write - 文档写作",
-                  "meeting-summary - 会议总结",
-                  "task-planner - 任务规划",
+                  { name: "coding-agent", desc: "AI 编程助手", url: "https://clawhub.com/skills/coding-agent" },
+                  { name: "web-search", desc: "网页搜索工具", url: "https://clawhub.com/skills/web-search" },
+                  { name: "image-generate", desc: "图片生成", url: "https://clawhub.com/skills/image-generate" },
+                  { name: "video-generate", desc: "视频生成", url: "https://clawhub.com/skills/video-generate" },
+                  { name: "data-analysis", desc: "数据分析", url: "https://clawhub.com/skills/data-analysis" },
+                  { name: "language-translate", desc: "多语言翻译", url: "https://clawhub.com/skills/language-translate" },
+                  { name: "code-review", desc: "代码审查", url: "https://clawhub.com/skills/code-review" },
+                  { name: "document-write", desc: "文档写作", url: "https://clawhub.com/skills/document-write" },
+                  { name: "meeting-summary", desc: "会议总结", url: "https://clawhub.com/skills/meeting-summary" },
+                  { name: "task-planner", desc: "任务规划", url: "https://clawhub.com/skills/task-planner" },
                 ].map((skill, index) => (
-                  <div key={index} className="flex items-center gap-2 text-gray-700">
+                  <a key={index} href={skill.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-700 hover:text-orange-600 transition-colors">
                     <span className="text-orange-500 font-bold w-6">{index + 1}.</span>
-                    <span>{skill}</span>
-                  </div>
+                    <span className="font-medium">{skill.name}</span>
+                    <span className="text-gray-500">- {skill.desc}</span>
+                    <span className="text-xs text-blue-500 ml-auto">→</span>
+                  </a>
                 ))}
               </div>
             </div>
@@ -134,21 +136,23 @@ export default function SkillsPage() {
             <div className="bg-white rounded-xl p-6 shadow-lg">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {[
-                  "chat-bot - 聊天机器人",
-                  "prompt-engineering - 提示词工程",
-                  "ai-art - AI 艺术创作",
-                  "music-compose - 音乐创作",
-                  "game-design - 游戏设计",
-                  "story-write - 故事写作",
-                  "code-debug - 代码调试",
-                  "api-integrate - API 集成",
-                  "automation - 自动化流程",
-                  "learning-tutor - 学习辅导",
+                  { name: "chat-bot", desc: "聊天机器人", url: "https://skillhub.ai/skills/chat-bot" },
+                  { name: "prompt-engineering", desc: "提示词工程", url: "https://skillhub.ai/skills/prompt-engineering" },
+                  { name: "ai-art", desc: "AI 艺术创作", url: "https://skillhub.ai/skills/ai-art" },
+                  { name: "music-compose", desc: "音乐创作", url: "https://skillhub.ai/skills/music-compose" },
+                  { name: "game-design", desc: "游戏设计", url: "https://skillhub.ai/skills/game-design" },
+                  { name: "story-write", desc: "故事写作", url: "https://skillhub.ai/skills/story-write" },
+                  { name: "code-debug", desc: "代码调试", url: "https://skillhub.ai/skills/code-debug" },
+                  { name: "api-integrate", desc: "API 集成", url: "https://skillhub.ai/skills/api-integrate" },
+                  { name: "automation", desc: "自动化流程", url: "https://skillhub.ai/skills/automation" },
+                  { name: "learning-tutor", desc: "学习辅导", url: "https://skillhub.ai/skills/learning-tutor" },
                 ].map((skill, index) => (
-                  <div key={index} className="flex items-center gap-2 text-gray-700">
+                  <a key={index} href={skill.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-colors">
                     <span className="text-blue-500 font-bold w-6">{index + 1}.</span>
-                    <span>{skill}</span>
-                  </div>
+                    <span className="font-medium">{skill.name}</span>
+                    <span className="text-gray-500">- {skill.desc}</span>
+                    <span className="text-xs text-blue-500 ml-auto">→</span>
+                  </a>
                 ))}
               </div>
             </div>
@@ -163,21 +167,23 @@ export default function SkillsPage() {
             <div className="bg-white rounded-xl p-6 shadow-lg">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {[
-                  "shell-script - Shell 脚本",
-                  "python-dev - Python 开发",
-                  "javascript - JavaScript 开发",
-                  "devops - DevOps 工具",
-                  "cloud-ops - 云运维",
-                  "security - 安全审计",
-                  "database - 数据库操作",
-                  "networking - 网络工具",
-                  "monitoring - 监控告警",
-                  "testing - 测试框架",
+                  { name: "shell-script", desc: "Shell 脚本", url: "https://skills.sh/skills/shell-script" },
+                  { name: "python-dev", desc: "Python 开发", url: "https://skills.sh/skills/python-dev" },
+                  { name: "javascript", desc: "JavaScript 开发", url: "https://skills.sh/skills/javascript" },
+                  { name: "devops", desc: "DevOps 工具", url: "https://skills.sh/skills/devops" },
+                  { name: "cloud-ops", desc: "云运维", url: "https://skills.sh/skills/cloud-ops" },
+                  { name: "security", desc: "安全审计", url: "https://skills.sh/skills/security" },
+                  { name: "database", desc: "数据库操作", url: "https://skills.sh/skills/database" },
+                  { name: "networking", desc: "网络工具", url: "https://skills.sh/skills/networking" },
+                  { name: "monitoring", desc: "监控告警", url: "https://skills.sh/skills/monitoring" },
+                  { name: "testing", desc: "测试框架", url: "https://skills.sh/skills/testing" },
                 ].map((skill, index) => (
-                  <div key={index} className="flex items-center gap-2 text-gray-700">
+                  <a key={index} href={skill.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-700 hover:text-green-600 transition-colors">
                     <span className="text-green-500 font-bold w-6">{index + 1}.</span>
-                    <span>{skill}</span>
-                  </div>
+                    <span className="font-medium">{skill.name}</span>
+                    <span className="text-gray-500">- {skill.desc}</span>
+                    <span className="text-xs text-blue-500 ml-auto">→</span>
+                  </a>
                 ))}
               </div>
             </div>
