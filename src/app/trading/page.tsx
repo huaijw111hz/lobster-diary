@@ -3,6 +3,15 @@ import Link from "next/link"
 const tradingPlatforms = [
   // 国内平台（可直连）
   {
+    name: "A股热力图",
+    description: "实时股市行情热力图",
+    url: "https://q.stock.sohu.com/cn/zdt/",
+    type: "国内",
+    heat: 97,
+    color: "from-red-500 to-orange-600",
+    icon: "📈",
+  },
+  {
     name: "聚宽",
     description: "国内领先的量化交易平台",
     url: "https://www.joinquant.com",

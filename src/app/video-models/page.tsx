@@ -93,7 +93,7 @@ const videoModels = [
     name: "海螺",
     description: "国产视频生成大模型",
     version: "2026 年最新版",
-    url: "https://hailuo.ai",
+    url: "https://hailuoai.com",
     color: "from-amber-500 to-orange-600",
     icon: "🐚",
   },

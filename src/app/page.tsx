@@ -75,13 +75,13 @@ export default function Home() {
               </div>
             </a>
 
-            <a href="https://xueqiu.com/hq" target="_blank" rel="noopener noreferrer" className="block">
-              <div className="bg-gradient-to-br from-red-500 to-orange-600 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
-                <div className="text-4xl mb-4">📈</div>
-                <h3 className="text-xl font-bold text-white mb-2">A股热力图</h3>
-                <p className="text-red-100">股市行情监控</p>
+            <Link href="/ai-tools" className="block">
+              <div className="bg-gradient-to-br from-orange-500 to-red-600 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                <div className="text-4xl mb-4">🛠️</div>
+                <h3 className="text-xl font-bold text-white mb-2">热门好用AI工具大全</h3>
+                <p className="text-orange-100">20个高点赞实用AI工具</p>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
 
