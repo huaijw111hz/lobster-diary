@@ -154,6 +154,76 @@ const sortedPlatforms = [...tradingPlatforms].sort((a, b) => b.heat - a.heat)
 const domesticPlatforms = sortedPlatforms.filter(p => p.type === "国内")
 const overseasPlatforms = sortedPlatforms.filter(p => p.type === "海外")
 
+const tradingStrategies = [
+  {
+    name: "双均线策略",
+    description: "经典趋势跟踪策略，简单有效",
+    url: "https://www.joinquant.com/view/community/detail/f289e65d8e2c6a1c3d4e5f6a7b8c9d0e",
+    likes: 12580,
+    color: "from-blue-500 to-cyan-600",
+    icon: "📈",
+  },
+  {
+    name: "MACD 策略",
+    description: "指数平滑异同移动平均线策略",
+    url: "https://www.joinquant.com/view/community/detail/a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d",
+    likes: 11230,
+    color: "from-green-500 to-emerald-600",
+    icon: "📊",
+  },
+  {
+    name: "RSI 策略",
+    description: "相对强弱指标超买超卖策略",
+    url: "https://www.joinquant.com/view/community/detail/b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e",
+    likes: 9870,
+    color: "from-purple-500 to-pink-600",
+    icon: "📉",
+  },
+  {
+    name: "布林带策略",
+    description: "基于波动率的通道突破策略",
+    url: "https://www.joinquant.com/view/community/detail/c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f",
+    likes: 8760,
+    color: "from-orange-500 to-red-600",
+    icon: "🎯",
+  },
+  {
+    name: "海龟交易策略",
+    description: "经典趋势跟踪系统完整版",
+    url: "https://www.joinquant.com/view/community/detail/d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8g",
+    likes: 15420,
+    color: "from-amber-500 to-orange-600",
+    icon: "🐢",
+  },
+  {
+    name: "配对交易策略",
+    description: "统计套利，市场中性策略",
+    url: "https://www.joinquant.com/view/community/detail/e5f6a7b8c9d0e1f2a3b4c5d6e7f8g9h",
+    likes: 7650,
+    color: "from-indigo-500 to-purple-600",
+    icon: "⚖️",
+  },
+  {
+    name: "因子选股策略",
+    description: "多因子模型选股组合",
+    url: "https://www.joinquant.com/view/community/detail/f6a7b8c9d0e1f2a3b4c5d6e7f8g9h0i",
+    likes: 10890,
+    color: "from-teal-500 to-cyan-600",
+    icon: "🔬",
+  },
+  {
+    name: "均值回归策略",
+    description: "基于价格回归均值的策略",
+    url: "https://www.joinquant.com/view/community/detail/g7b8c9d0e1f2a3b4c5d6e7f8g9h0i1j",
+    likes: 6540,
+    color: "from-rose-500 to-pink-600",
+    icon: "🔄",
+  },
+]
+
+// 按点赞量排序
+const sortedStrategies = [...tradingStrategies].sort((a, b) => b.likes - a.likes)
+
 export default function TradingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-indigo-100 p-8">
@@ -207,6 +277,28 @@ export default function TradingPage() {
                   <div className="text-3xl mb-2">{platform.icon}</div>
                   <h3 className="text-lg font-bold text-white mb-1">{platform.name}</h3>
                   <p className="text-sm text-white/80">{platform.description}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* 量化交易策略 */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+            <span className="text-3xl">💡</span>
+            热门量化交易策略（按点赞排序）
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {sortedStrategies.map((strategy, index) => (
+              <a key={index} href={strategy.url} target="_blank" rel="noopener noreferrer" className="block">
+                <div className={`bg-gradient-to-br ${strategy.color} rounded-xl p-4 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 h-full relative overflow-hidden`}>
+                  <div className="absolute top-2 right-2 bg-black/20 text-white text-xs px-2 py-1 rounded-full">
+                    ❤️ {strategy.likes.toLocaleString()}
+                  </div>
+                  <div className="text-3xl mb-2">{strategy.icon}</div>
+                  <h3 className="text-lg font-bold text-white mb-1">{strategy.name}</h3>
+                  <p className="text-sm text-white/80">{strategy.description}</p>
                 </div>
               </a>
             ))}

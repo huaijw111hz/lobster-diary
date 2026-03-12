@@ -131,6 +131,14 @@ const videoModels = [
     color: "from-sky-500 to-blue-600",
     icon: "🌟",
   },
+  {
+    name: "海螺",
+    description: "国产视频生成大模型",
+    version: "2026 年最新版",
+    url: "https://hailuo.ai",
+    color: "from-amber-500 to-orange-600",
+    icon: "🐚",
+  },
 ]
 
 const deploymentPlatforms = [
