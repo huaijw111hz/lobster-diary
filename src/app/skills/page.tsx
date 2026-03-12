@@ -89,6 +89,101 @@ export default function SkillsPage() {
           </div>
         </div>
 
+        {/* 热门SKILLS榜单 */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+            <span className="text-3xl">🏆</span>
+            热门SKILLS榜单（Top 10）
+          </h2>
+          
+          {/* ClawHub Top 10 */}
+          <div className="mb-8">
+            <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span className="text-2xl">🦞</span>
+              ClawHub 热门 SKILLS
+            </h3>
+            <div className="bg-white rounded-xl p-6 shadow-lg">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {[
+                  "coding-agent - AI 编程助手",
+                  "web-search - 网页搜索工具",
+                  "image-generate - 图片生成",
+                  "video-generate - 视频生成",
+                  "data-analysis - 数据分析",
+                  "language-translate - 多语言翻译",
+                  "code-review - 代码审查",
+                  "document-write - 文档写作",
+                  "meeting-summary - 会议总结",
+                  "task-planner - 任务规划",
+                ].map((skill, index) => (
+                  <div key={index} className="flex items-center gap-2 text-gray-700">
+                    <span className="text-orange-500 font-bold w-6">{index + 1}.</span>
+                    <span>{skill}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* SkillHub Top 10 */}
+          <div className="mb-8">
+            <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span className="text-2xl">🏪</span>
+              SkillHub 热门 SKILLS
+            </h3>
+            <div className="bg-white rounded-xl p-6 shadow-lg">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {[
+                  "chat-bot - 聊天机器人",
+                  "prompt-engineering - 提示词工程",
+                  "ai-art - AI 艺术创作",
+                  "music-compose - 音乐创作",
+                  "game-design - 游戏设计",
+                  "story-write - 故事写作",
+                  "code-debug - 代码调试",
+                  "api-integrate - API 集成",
+                  "automation - 自动化流程",
+                  "learning-tutor - 学习辅导",
+                ].map((skill, index) => (
+                  <div key={index} className="flex items-center gap-2 text-gray-700">
+                    <span className="text-blue-500 font-bold w-6">{index + 1}.</span>
+                    <span>{skill}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Skills.sh Top 10 */}
+          <div className="mb-8">
+            <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span className="text-2xl">💻</span>
+              Skills.sh 热门 SKILLS
+            </h3>
+            <div className="bg-white rounded-xl p-6 shadow-lg">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {[
+                  "shell-script - Shell 脚本",
+                  "python-dev - Python 开发",
+                  "javascript - JavaScript 开发",
+                  "devops - DevOps 工具",
+                  "cloud-ops - 云运维",
+                  "security - 安全审计",
+                  "database - 数据库操作",
+                  "networking - 网络工具",
+                  "monitoring - 监控告警",
+                  "testing - 测试框架",
+                ].map((skill, index) => (
+                  <div key={index} className="flex items-center gap-2 text-gray-700">
+                    <span className="text-green-500 font-bold w-6">{index + 1}.</span>
+                    <span>{skill}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Footer */}
         <footer className="text-center mt-12 text-gray-600">
           <Link href="/" className="text-blue-600 hover:text-blue-800 underline">

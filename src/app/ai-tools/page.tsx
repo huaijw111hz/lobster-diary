@@ -90,14 +90,6 @@ const aiTools = [
     icon: "🎬",
   },
   {
-    name: "Runway",
-    description: "AI 视频创作平台",
-    url: "https://runwayml.com",
-    likes: 17600,
-    color: "from-cyan-500 to-blue-600",
-    icon: "🎥",
-  },
-  {
     name: "Canva AI",
     description: "AI 图形设计工具",
     url: "https://www.canva.com/ai",
@@ -153,14 +145,6 @@ const aiTools = [
     color: "from-teal-500 to-emerald-600",
     icon: "📑",
   },
-  {
-    name: "Luma AI",
-    description: "AI 3D 视频生成",
-    url: "https://lumalabs.ai",
-    likes: 14200,
-    color: "from-indigo-400 to-purple-500",
-    icon: "🌟",
-  },
 ]
 
 // 按点赞量排序
@@ -178,7 +162,7 @@ export default function AIToolsPage() {
             </div>
           </Link>
           <h1 className="text-4xl font-bold text-gray-900 mb-2">🛠️ 热门好用AI工具大全</h1>
-          <p className="text-xl text-gray-600">20个高点赞实用AI工具推荐</p>
+          <p className="text-xl text-gray-600">18个高点赞实用AI工具推荐</p>
         </header>
 
         {/* 工具列表 */}
