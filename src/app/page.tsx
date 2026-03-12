@@ -244,13 +244,13 @@ export default function Home() {
         <div className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">🔗 AI 实用链接</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <a href="https://dexter.ai" target="_blank" rel="noopener noreferrer" className="block">
+            <Link href="/trading" className="block">
               <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
-                <div className="text-4xl mb-4">🤖</div>
-                <h3 className="text-xl font-bold text-white mb-2">Dexter</h3>
-                <p className="text-purple-100">AI 智能助手平台</p>
+                <div className="text-4xl mb-4">📊</div>
+                <h3 className="text-xl font-bold text-white mb-2">量化交易平台汇总</h3>
+                <p className="text-purple-100">国内外主流量化交易平台大全</p>
               </div>
-            </a>
+            </Link>
 
             <a href="https://worldmonitor.ai" target="_blank" rel="noopener noreferrer" className="block">
               <div className="bg-gradient-to-br from-green-500 to-teal-600 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
