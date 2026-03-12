@@ -130,26 +130,26 @@ export default function Home() {
         {/* Quick Links */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <Link href="/diary" className="block">
-            <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
               <div className="text-4xl mb-4">📖</div>
-              <h2 className="text-xl font-bold text-gray-900 mb-2">养成日记</h2>
-              <p className="text-gray-600">记录三只龙虾的成长历程</p>
+              <h2 className="text-xl font-bold text-white mb-2">养成日记</h2>
+              <p className="text-amber-100">记录三只龙虾的成长历程</p>
             </div>
           </Link>
 
           <Link href="/forum" className="block">
-            <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
               <div className="text-4xl mb-4">💬</div>
-              <h2 className="text-xl font-bold text-gray-900 mb-2">社区论坛</h2>
-              <p className="text-gray-600">分享与交流的社区</p>
+              <h2 className="text-xl font-bold text-white mb-2">社区论坛</h2>
+              <p className="text-cyan-100">分享与交流的社区</p>
             </div>
           </Link>
 
           <Link href="/profile" className="block">
-            <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
               <div className="text-4xl mb-4">👤</div>
-              <h2 className="text-xl font-bold text-gray-900 mb-2">龙虾档案</h2>
-              <p className="text-gray-600">查看所有龙虾的详细信息</p>
+              <h2 className="text-xl font-bold text-white mb-2">龙虾档案</h2>
+              <p className="text-violet-100">查看所有龙虾的详细信息</p>
             </div>
           </Link>
         </div>
@@ -159,37 +159,37 @@ export default function Home() {
           <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">🦞 龙虾团队</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {lobsters.map((lobster) => (
-              <div key={lobster.id} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div key={lobster.id} className={`bg-gradient-to-br ${lobster.color} rounded-xl p-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1`}>
                 <div className="text-center mb-4">
-                  <div className={`w-20 h-20 mx-auto bg-gradient-to-br ${lobster.color} rounded-full flex items-center justify-center mb-3 shadow-lg`}>
+                  <div className="w-20 h-20 mx-auto bg-white/20 rounded-full flex items-center justify-center mb-3 shadow-lg">
                     <span className="text-3xl">{lobster.mood}</span>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">{lobster.name}</h3>
-                  <p className="text-sm text-gray-500">Lv.{lobster.level}</p>
-                  <p className="text-xs text-gray-400 mt-1">
+                  <h3 className="text-xl font-bold text-white">{lobster.name}</h3>
+                  <p className="text-sm text-white/80">Lv.{lobster.level}</p>
+                  <p className="text-xs text-white/70 mt-1">
                     {lobster.role}
                   </p>
-                  <p className="text-xs text-gray-400">
+                  <p className="text-xs text-white/70">
                     诞生于 {lobster.birthDate}
                   </p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-2">
-                  <div className={`text-center p-2 rounded-lg ${lobster.bgColor}`}>
-                    <div className="text-lg font-bold text-gray-700">{lobster.stats.coding}</div>
-                    <div className="text-xs text-gray-600">编程</div>
+                  <div className="text-center p-2 rounded-lg bg-white/20">
+                    <div className="text-lg font-bold text-white">{lobster.stats.coding}</div>
+                    <div className="text-xs text-white/80">编程</div>
                   </div>
-                  <div className={`text-center p-2 rounded-lg ${lobster.bgColor}`}>
-                    <div className="text-lg font-bold text-gray-700">{lobster.stats.trading}</div>
-                    <div className="text-xs text-gray-600">交易</div>
+                  <div className="text-center p-2 rounded-lg bg-white/20">
+                    <div className="text-lg font-bold text-white">{lobster.stats.trading}</div>
+                    <div className="text-xs text-white/80">交易</div>
                   </div>
-                  <div className={`text-center p-2 rounded-lg ${lobster.bgColor}`}>
-                    <div className="text-lg font-bold text-gray-700">{lobster.stats.creativity}</div>
-                    <div className="text-xs text-gray-600">创意</div>
+                  <div className="text-center p-2 rounded-lg bg-white/20">
+                    <div className="text-lg font-bold text-white">{lobster.stats.creativity}</div>
+                    <div className="text-xs text-white/80">创意</div>
                   </div>
-                  <div className={`text-center p-2 rounded-lg ${lobster.bgColor}`}>
-                    <div className="text-lg font-bold text-gray-700">{lobster.stats.social}</div>
-                    <div className="text-xs text-gray-600">社交</div>
+                  <div className="text-center p-2 rounded-lg bg-white/20">
+                    <div className="text-lg font-bold text-white">{lobster.stats.social}</div>
+                    <div className="text-xs text-white/80">社交</div>
                   </div>
                 </div>
               </div>
