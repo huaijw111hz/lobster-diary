@@ -115,6 +115,22 @@ const videoModels = [
     color: "from-green-500 to-green-700",
     icon: "🐧",
   },
+  {
+    name: "Vidu",
+    description: "高质量视频生成与编辑",
+    version: "2026 年最新版",
+    url: "https://vidu.com",
+    color: "from-indigo-500 to-purple-600",
+    icon: "🎥",
+  },
+  {
+    name: "Luma",
+    description: "沉浸式 3D 视频生成",
+    version: "2026 年最新版",
+    url: "https://lumalabs.ai",
+    color: "from-sky-500 to-blue-600",
+    icon: "🌟",
+  },
 ]
 
 const deploymentPlatforms = [
