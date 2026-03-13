@@ -30,9 +30,9 @@ const skillPlatforms = [
     icon: "🤖",
   },
   {
-    name: "PromptHub",
-    description: "提示词和技能模板",
-    url: "https://prompthub.io",
+    name: "PromptHero",
+    description: "提示词搜索和灵感平台",
+    url: "https://prompthero.com",
     color: "from-indigo-500 to-purple-600",
     icon: "📝",
   },

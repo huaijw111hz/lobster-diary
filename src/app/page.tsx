@@ -8,7 +8,7 @@ const lobsters = [
     birthDate: "2026-03-09",
     role: "全能助手",
     description: "第一只龙虾，负责全方位协助",
-    mood: "😊",
+    mood: "🦞",
     level: 5,
     color: "from-blue-500 to-cyan-500",
     bgColor: "bg-blue-100",
@@ -21,7 +21,7 @@ const lobsters = [
     birthDate: "2026-03-10",
     role: "量化交易专家",
     description: "第二只龙虾，专注量化交易",
-    mood: "💰",
+    mood: "🦞",
     level: 4,
     color: "from-green-500 to-emerald-500",
     bgColor: "bg-green-100",
@@ -34,7 +34,7 @@ const lobsters = [
     birthDate: "2026-03-11",
     role: "网站开发专家",
     description: "第三只龙虾，专门制作这个网站",
-    mood: "🚀",
+    mood: "🦞",
     level: 3,
     color: "from-purple-500 to-pink-500",
     bgColor: "bg-purple-100",
@@ -95,9 +95,6 @@ export default function Home() {
                 <div className="text-5xl mb-4">🚀</div>
                 <h3 className="text-2xl font-bold text-white mb-2">一键部署平台</h3>
                 <p className="text-blue-100 text-lg">13个快速部署 AI 助手的平台</p>
-                <div className="mt-4 inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm">
-                  点击进入 →
-                </div>
               </div>
             </Link>
 
@@ -107,9 +104,6 @@ export default function Home() {
                 <div className="text-5xl mb-4">🎬</div>
                 <h3 className="text-2xl font-bold text-white mb-2">视频生成大模型</h3>
                 <p className="text-purple-100 text-lg">12个主流视频生成 AI 大模型</p>
-                <div className="mt-4 inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm">
-                  点击进入 →
-                </div>
               </div>
             </Link>
 
@@ -119,9 +113,6 @@ export default function Home() {
                 <div className="text-5xl mb-4">🎯</div>
                 <h3 className="text-2xl font-bold text-white mb-2">SKILLS 技能商店</h3>
                 <p className="text-green-100 text-lg">8个 AI 技能商店和资源平台</p>
-                <div className="mt-4 inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm">
-                  点击进入 →
-                </div>
               </div>
             </Link>
           </div>
