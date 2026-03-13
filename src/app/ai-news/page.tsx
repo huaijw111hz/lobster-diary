@@ -39,16 +39,22 @@ const foreignBloggers = [
 // 国内社交平台博主
 const domesticBloggers = {
   zhihu: [
-    { name: "苏洋", url: "https://www.zhihu.com/people/suyang555", icon: "📝" },
-    { name: "信息门下跑狗", description: "北大博士，AI动态解读", url: "https://www.zhihu.com/people/xin-xi-men-xia-pao-gou", icon: "🐕" },
-    { name: "Hugging Face官方", url: "https://www.zhihu.com/people/huggingface", icon: "🤗" },
+    { name: "苏洋", description: "科技博主", url: "https://www.zhihu.com/people/su-yang-41-98", icon: "📝" },
+    { name: "信息门下走狗", description: "AI动态解读", url: "https://www.zhihu.com/people/xxmtt", icon: "🐕" },
+    { name: "Hugging Face", url: "https://www.zhihu.com/org/huggingface", icon: "🤗" },
   ],
   bilibili: [
     { name: "秋葉aaaki", description: "AI工具/生成教程顶流", url: "https://space.bilibili.com/124345", icon: "🍂" },
     { name: "同济子豪兄", description: "AI科普+代码实战", url: "https://space.bilibili.com/19000884", icon: "🎓" },
     { name: "青龙圣者", description: "AI绘画/工作流硬核教程", url: "https://space.bilibili.com/766993", icon: "🐉" },
   ],
-  wechat: ["量子位", "机器之心", "新智元", "数字生命卡兹克", "LOW特朗"],
+  wechat: [
+    { name: "量子位", description: "AI产业报道", url: "https://www.qbitai.com/", icon: "⚛️" },
+    { name: "机器之心", description: "专业AI媒体", url: "https://www.jiqizhixin.com/", icon: "🤖" },
+    { name: "新智元", description: "AI领域资讯", url: "https://www.aixinzhi.com/", icon: "🧠" },
+    { name: "数字生命卡兹克", description: "AI科技博主", icon: "🎮" },
+    { name: "LOW特朗", description: "AI内容创作者", icon: "🎤" },
+  ],
 }
 
 export default function AINewsPage() {
@@ -195,11 +201,27 @@ export default function AINewsPage() {
               微信公众号
             </h3>
             <div className="bg-white rounded-xl p-6 shadow-lg">
-              <div className="flex flex-wrap gap-3">
-                {domesticBloggers.wechat.map((name, index) => (
-                  <span key={index} className="px-4 py-2 bg-green-100 text-green-700 rounded-full font-medium">
-                    {name}
-                  </span>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {domesticBloggers.wechat.map((account, index) => (
+                  account.url ? (
+                    <a key={index} href={account.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
+                      <span className="text-2xl">{account.icon}</span>
+                      <div>
+                        <span className="font-medium text-gray-900">{account.name}</span>
+                        {account.description && <span className="text-sm text-gray-500"> - {account.description}</span>}
+                      </div>
+                      <span className="text-xs text-green-500 ml-auto">→</span>
+                    </a>
+                  ) : (
+                    <div key={index} className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
+                      <span className="text-2xl">{account.icon}</span>
+                      <div>
+                        <span className="font-medium text-gray-900">{account.name}</span>
+                        {account.description && <span className="text-sm text-gray-500"> - {account.description}</span>}
+                      </div>
+                      <span className="text-xs text-gray-400 ml-auto">微信搜索</span>
+                    </div>
+                  )
                 ))}
               </div>
             </div>
