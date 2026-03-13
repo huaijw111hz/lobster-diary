@@ -8,7 +8,7 @@ const lobsters = [
     birthDate: "2026-03-09",
     role: "全能助手",
     description: "第一只龙虾，负责全方位协助",
-    mood: "🦞",
+    mood: "😊",
     level: 5,
     color: "from-blue-500 to-cyan-500",
     bgColor: "bg-blue-100",
@@ -21,7 +21,7 @@ const lobsters = [
     birthDate: "2026-03-10",
     role: "量化交易专家",
     description: "第二只龙虾，专注量化交易",
-    mood: "🦞",
+    mood: "💰",
     level: 4,
     color: "from-green-500 to-emerald-500",
     bgColor: "bg-green-100",
@@ -34,7 +34,7 @@ const lobsters = [
     birthDate: "2026-03-11",
     role: "网站开发专家",
     description: "第三只龙虾，专门制作这个网站",
-    mood: "🦞",
+    mood: "🚀",
     level: 3,
     color: "from-purple-500 to-pink-500",
     bgColor: "bg-purple-100",
@@ -58,7 +58,7 @@ export default function Home() {
         {/* AI 实用链接 - 放在最上面 */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">🔗 AI 实用链接</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             <Link href="/trading" className="block">
               <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
                 <div className="text-4xl mb-4">📊</div>
@@ -80,6 +80,17 @@ export default function Home() {
                 <div className="text-4xl mb-4">🛠️</div>
                 <h3 className="text-xl font-bold text-white mb-2">热门好用AI工具大全</h3>
                 <p className="text-orange-100">18个高点赞实用AI工具</p>
+              </div>
+            </Link>
+          </div>
+
+          {/* 第二行 */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Link href="/ai-news" className="block">
+              <div className="bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                <div className="text-4xl mb-4">📰</div>
+                <h3 className="text-xl font-bold text-white mb-2">AI最新资讯</h3>
+                <p className="text-cyan-100">海内外AI科技资讯与博主推荐</p>
               </div>
             </Link>
           </div>
@@ -138,7 +149,7 @@ export default function Home() {
 
           <Link href="/profile" className="block">
             <div className="bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
-              <div className="text-4xl mb-4">👤</div>
+              <div className="text-4xl mb-4">🦞</div>
               <h2 className="text-xl font-bold text-white mb-2">龙虾档案</h2>
               <p className="text-violet-100">查看所有龙虾的详细信息</p>
             </div>
