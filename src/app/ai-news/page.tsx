@@ -39,8 +39,7 @@ const foreignBloggers = [
 // 国内社交平台博主
 const domesticBloggers = {
   zhihu: [
-    { name: "苏洋", description: "科技博主", url: "https://www.zhihu.com/people/su-yang-41-98", icon: "📝" },
-    { name: "信息门下走狗", description: "AI动态解读", url: "https://www.zhihu.com/people/xxmtt", icon: "🐕" },
+    { name: "苏洋", description: "科技博主", url: "https://www.zhihu.com/people/soulteary", icon: "📝" },
     { name: "Hugging Face", url: "https://www.zhihu.com/org/huggingface", icon: "🤗" },
   ],
   bilibili: [
